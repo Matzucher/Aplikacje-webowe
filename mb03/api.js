@@ -58,3 +58,17 @@ function odswiez() {
 }
 
 filtr.addEventListener("input", odswiez);
+
+async function start() {
+    filtr.disabled = true;
+    try {
+        uzytkownicy = await pobierzUzytkownikow();
+        filtr.disabled = false;
+        odswiez();
+        filtr.focus();
+    } catch (blad) {
+        pokazBlad(blad.message);
+        licznik.textContent = "";
+    }
+}
+start();
