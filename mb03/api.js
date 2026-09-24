@@ -26,3 +26,18 @@ function bezpieczny(tekst) {
     .replaceAll('"', "&quot;");
 }
 
+function kartaHtml(uzytkownik) {
+    const { name, email, address, company } = uzytkownik;
+    return `
+    <li class="karta">
+        <h2>${bezpieczny(name)}</h2>
+        <dl>
+            <dt>E-mail</dt>
+            <dd><a href="mailto:${bezpieczny(email)}">${bezpieczny(email)}</a></dd>
+            <dt>Miasto</dt>
+            <dd>${bezpieczny(address.city)}</dd>
+            <dt>Firma</dt>
+            <dd>${bezpieczny(company.name)}</dd>
+        </dl>
+    </li>`;
+}
