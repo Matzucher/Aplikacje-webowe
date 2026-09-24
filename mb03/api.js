@@ -49,3 +49,12 @@ function pokazListe(lista) {
     }
     wynik.innerHTML = `<ul class="lista">${lista.map(kartaHtml).join("")}</ul>`;
 }
+
+function odswiez() {
+    const szukane = filtr.value.trim().toLowerCase();
+    const widoczne = szukane === "" ? uzytkownicy : uzytkownicy.filter(u => u.name.toLowerCase().includes(szukane));
+    licznik.textContent = `Widocznych: ${widoczne.length} z ${uzytkownicy.length}`;
+    pokazListe(widoczne);
+}
+
+filtr.addEventListener("input", odswiez);
