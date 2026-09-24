@@ -72,3 +72,11 @@ async function start() {
     }
 }
 start();
+
+function pokazBlad(komunikat) {
+    wynik.innerHTML = `
+    <p class="stan stan--blad">
+    <strong>Nie udało się pobrać danych.</strong>
+    ${bezpieczny(komunikat)}
+    </p>`;
+}
