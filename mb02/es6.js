@@ -4,3 +4,6 @@ export const kursy = [
     { nazwa: "MySQL", godziny: 15, aktywny: true },
     { nazwa: "Bootstrap", godziny: 10, aktywny: true },
 ];
+
+export const nazwyAktywnych = tablica =>
+    tablica.filter(kurs => kurs.aktywny).map(kurs => kurs.nazwa);
