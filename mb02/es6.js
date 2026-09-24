@@ -7,3 +7,6 @@ export const kursy = [
 
 export const nazwyAktywnych = tablica =>
     tablica.filter(kurs => kurs.aktywny).map(kurs => kurs.nazwa);
+
+export const sumaGodzin = tablica =>
+    tablica.reduce((suma, kurs) => suma + kurs.godziny, 0);
