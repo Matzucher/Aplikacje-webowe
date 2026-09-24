@@ -17,3 +17,12 @@ async function pobierzUzytkownikow() {
         throw blad;
     }
 }
+
+function bezpieczny(tekst) {
+    return String(tekst)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
