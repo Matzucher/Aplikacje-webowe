@@ -3,6 +3,7 @@ import CategoryBar from './components/CategoryBar.jsx'
 import Gallery from './components/Gallery.jsx'
 import Footer from './components/Footer.jsx'
 import AddPhotoModal from './components/AddPhotoModal.jsx'
+import FiltersOffcanvas from './components/FiltersOffcanvas.jsx'
 
 export default function App() {
   return <>
@@ -48,5 +49,6 @@ export default function App() {
 
     <Footer />
     <AddPhotoModal />
+    <FiltersOffcanvas />
   </>
 }
