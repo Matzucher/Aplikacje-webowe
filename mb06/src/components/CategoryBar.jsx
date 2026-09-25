@@ -1,8 +1,4 @@
-const Categories = [
-    { value: 'gory', label: 'Góry' },
-    { value: 'morze', label: 'Morze' },
-    { value: 'miasto', label: 'Miasto' },
-]
+import Categories from "../data/categoriesDB.json"
 
 export default function CategoryBar({ activeCategory, onChange }) {
     return (

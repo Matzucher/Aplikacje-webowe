@@ -63,6 +63,6 @@ export default function App() {
 
     <Footer />
     <AddPhotoModal />
-    <FiltersOffcanvas />
+    <FiltersOffcanvas activeCategory={activeCategory} onChange={setActiveCategory} />
   </>
 }

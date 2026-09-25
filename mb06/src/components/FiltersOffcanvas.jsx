@@ -1,4 +1,10 @@
-export default function FiltersOffcanvas() {
+import Categories from "../data/categoriesDB.json"
+
+export default function FiltersOffcanvas({ activeCategory, onChange }) {
+    function SwitchCategory(category) {
+        onChange(activeCategory === category ? 'all' : category)
+    }
+
     return <>
         <div
             className="offcanvas offcanvas-start"
@@ -19,24 +25,20 @@ export default function FiltersOffcanvas() {
                 <p className="text-body-secondary">
                     Zaznacz kategorie, które chcesz zobaczyć:
                 </p>
-                <div className="form-check">
-                    <input className="form-check-input" type="checkbox" id="filtrGory" defaultChecked />
-                    <label className="form-check-label" htmlFor="filtrGory">
-                        Góry
-                    </label>
-                </div>
-                <div className="form-check">
-                    <input className="form-check-input" type="checkbox" id="filtrMorze" defaultChecked />
-                    <label className="form-check-label" htmlFor="filtrMorze">
-                        Morze
-                    </label>
-                </div>
-                <div className="form-check">
-                    <input className="form-check-input" type="checkbox" id="filtrMiasto" defaultChecked />
-                    <label className="form-check-label" htmlFor="filtrMiasto">
-                        Miasto
-                    </label>
-                </div>
+                {Categories.map(category => (
+                    <div className="form-check" key={category.value}>
+                        <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id={`filtr-${category.value}`}
+                            checked={activeCategory === category.value || activeCategory === 'all'}
+                            onChange={() => SwitchCategory(category.value)}
+                        />
+                        <label className="form-check-label" htmlFor={`filtr-${category.value}`}>
+                            {category.label}
+                        </label>
+                    </div>
+                ))}
                 <button
                     type="button"
                     className="btn btn-primary w-100 mt-4"
