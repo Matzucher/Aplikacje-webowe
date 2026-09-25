@@ -1,9 +1,8 @@
 import { Fragment } from 'react'
-import photos from '../data/photos.json'
 import PhotoCard from './PhotoCard.jsx'
 import PhotoModal from './PhotoModal.jsx'
 
-export default function Gallery() {
+export default function Gallery({ photos }) {
     return <>
         <div id="galeria" className="row g-4">
             {photos.map(photo => (

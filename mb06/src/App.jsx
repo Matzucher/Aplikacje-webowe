@@ -1,12 +1,16 @@
+import { useState } from 'react'
 import Navbar from './components/Navbar.jsx'
 import CategoryBar from './components/CategoryBar.jsx'
 import Gallery from './components/Gallery.jsx'
 import Footer from './components/Footer.jsx'
 import AddPhotoModal from './components/AddPhotoModal.jsx'
 import FiltersOffcanvas from './components/FiltersOffcanvas.jsx'
+import photosDB from './data/photosDB.json'
 import './App.css'
 
 export default function App() {
+  const [photos, setPhotoss] = useState(photosDB)
+
   return <>
     <Navbar />
     <header className="container py-4 py-lg-5">
@@ -45,7 +49,7 @@ export default function App() {
 
     <main className="container">
       <CategoryBar />
-      <Gallery />
+      <Gallery photos={photos} />
     </main>
 
     <Footer />
