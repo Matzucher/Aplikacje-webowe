@@ -10,6 +10,10 @@ import './App.css'
 
 export default function App() {
   const [photos, setPhotoss] = useState(photosDB)
+  const [activeCategory, setActiveCategory] = useState("all")
+
+  const filteredPhotos =
+    activeCategory === "all" ? photos : photos.filter(z => z.category === activeCategory)
 
   return <>
     <Navbar />
@@ -48,8 +52,13 @@ export default function App() {
     </header>
 
     <main className="container">
-      <CategoryBar />
-      <Gallery photos={photos} />
+      <CategoryBar activeCategory={activeCategory} onChange={setActiveCategory} />
+      {filteredPhotos.length === 0 && (
+        <div className="alert alert-warning">
+          Nie znaleziono zdjęć w tej kategorii.
+        </div>
+      )}
+      <Gallery photos={filteredPhotos} />
     </main>
 
     <Footer />

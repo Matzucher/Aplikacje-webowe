@@ -1,4 +1,10 @@
-export default function CategoryBar() {
+const Categories = [
+    { value: 'gory', label: 'Góry' },
+    { value: 'morze', label: 'Morze' },
+    { value: 'miasto', label: 'Miasto' },
+]
+
+export default function CategoryBar({ activeCategory, onChange }) {
     return (
         <div id="kategorie" className="d-flex flex-wrap gap-2 mb-4">
             <button
@@ -7,22 +13,16 @@ export default function CategoryBar() {
                 aria-pressed="true">
                 Wszystkie
             </button>
-            <button
-                type="button"
-                className="btn btn-outline-primary">
-                Góry
-
-            </button>
-            <button
-                type="button"
-                className="btn btn-outline-primary">
-                Morze
-            </button>
-            <button
-                type="button"
-                className="btn btn-outline-primary">
-                Miasto
-            </button>
+            {Categories.map(filterCategory => (
+                <button
+                    key={filterCategory.value}
+                    type="button"
+                    className={`btn btn-outline-primary${activeCategory === filterCategory.value ? ' active' : ''}`}
+                    aria-pressed={activeCategory === filterCategory.value}
+                    onClick={() => onChange(filterCategory.value)}>
+                    {filterCategory.label}
+                </button>
+            ))}
         </div>
     )
 }
