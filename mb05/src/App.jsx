@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar.jsx'
+import CategoryBar from './components/CategoryBar.jsx'
 
 export default function App() {
   return <>
@@ -36,5 +37,9 @@ export default function App() {
         </div>
       </div>
     </header>
+
+    <main className="container">
+      <CategoryBar />
+    </main>
   </>
 }
