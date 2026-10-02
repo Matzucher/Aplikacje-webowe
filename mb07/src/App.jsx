@@ -54,6 +54,9 @@ export default function App() {
           Sortuj {ascending ? 'Z→A' : 'A→Z'}
         </button>
       </div>
+      <p className="text-body-secondary">
+        Znaleziono {filteredCourses.length} z {courses.length} kursów
+      </p>
       <ol>
         {filteredCourses.map(({ course, number }) => (
           <li key={number} value={number}>{course}</li>
