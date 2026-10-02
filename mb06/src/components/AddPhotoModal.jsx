@@ -8,7 +8,7 @@ const EMPTY_FORM = {
     description: '',
 }
 
-export function AddPhotoModal({ onAdd }) {
+export default function AddPhotoModal({ onAdd }) {
     const [form, setForm] = useState(EMPTY_FORM)
     function changeField(field) {
         return function (event) {

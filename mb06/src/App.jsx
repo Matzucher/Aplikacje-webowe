@@ -16,8 +16,16 @@ export default function App() {
     activeCategory === "all" ? photos : photos.filter(z => z.category === activeCategory)
 
   function deletePhoto(id) {
-    setPhotoss(photos.filter(z => z.id !== id))
+    setPhotoss(photos.filter(p => p.id !== id))
   }
+
+  function addPhoto(newPhoto) {
+    const newPhotoId = Math.max(...photos.map(p => p.id)) + 1
+    setPhotoss([...photos, {
+      ...newPhoto, id: newPhotoId, favorite: false
+    }])
+  }
+
   return <>
     <Navbar />
     <header className="container py-4 py-lg-5">
@@ -65,7 +73,7 @@ export default function App() {
     </main>
 
     <Footer />
-    <AddPhotoModal onAdd={addP} />
+    <AddPhotoModal onAdd={addPhoto} />
     <FiltersOffcanvas activeCategory={activeCategory} onChange={setActiveCategory} />
   </>
 }
