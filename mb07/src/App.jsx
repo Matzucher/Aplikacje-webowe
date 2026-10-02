@@ -11,10 +11,14 @@ export default function App() {
   const nameRef = useRef(null);
   const courseNumberRef = useRef(null);
   const [search, setSearch] = useState('')
+  const [ascending, setAscending] = useState(true)
 
   const filteredCourses = courses
     .map((course, id) => ({ course, number: id + 1 }))
     .filter(({ course }) => course.toLowerCase().includes(search.toLowerCase()))
+    .sort((a, b) => ascending
+      ? a.course.localeCompare(b.course)
+      : b.course.localeCompare(a.course))
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -33,15 +37,23 @@ export default function App() {
     <div className="container py-4" style={{ maxWidth: 600 }}>
       <h1 className="h3 mb-4">Zapisy na kursy</h1>
       <h2 className="h5">Liczba kursów: {courses.length}</h2>
+      <div className="d-flex gap-2 mb-2">
+        <input
+          type="text"
+          className="form-control mb-2"
+          placeholder="Szukaj kursu..."
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+        />
 
-      <input
-        type="text"
-        className="form-control mb-2"
-        placeholder="Szukaj kursu..."
-        value={search}
-        onChange={e => setSearch(e.target.value)}
-      />
-
+        <button
+          type="button"
+          className="btn btn-outline-secondary text-nowrap"
+          onClick={() => setAscending(!ascending)}
+        >
+          Sortuj {ascending ? 'Z→A' : 'A→Z'}
+        </button>
+      </div>
       <ol>
         {filteredCourses.map(({ course, number }) => (
           <li key={number} value={number}>{course}</li>
