@@ -12,6 +12,7 @@ export default function App() {
   const courseNumberRef = useRef(null);
   const [search, setSearch] = useState('')
   const [ascending, setAscending] = useState(true)
+  const [status, setStatus] = useState(null)
 
   const filteredCourses = courses
     .map((course, id) => ({ course, number: id + 1 }))
@@ -28,8 +29,10 @@ export default function App() {
     console.log(name)
     if (course !== undefined) {
       console.log(course)
+      setStatus({ type: 'succes', text: `${name} zapisany(-a) na kurs: ${course}` })
     } else {
       console.log('Nieprawidłowy numer kursu')
+      setStatus({ type: 'error', text: 'Nieprawidłowy numer kursu' })
     }
   }
 
@@ -87,6 +90,11 @@ export default function App() {
           </button>
         </div>
       </form>
+      {status && (
+        <div className={`alert alert-${status.type === 'succes' ? 'success' : 'danger'}`}>
+          {status.text}
+        </div>
+      )}
     </div>
   )
 }
