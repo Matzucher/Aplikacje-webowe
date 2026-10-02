@@ -15,6 +15,9 @@ export default function App() {
   const filteredPhotos =
     activeCategory === "all" ? photos : photos.filter(z => z.category === activeCategory)
 
+  function deletePhoto(id) {
+    setPhotoss(photos.filter(z => z.id !== id))
+  }
   return <>
     <Navbar />
     <header className="container py-4 py-lg-5">
@@ -58,7 +61,7 @@ export default function App() {
           Nie znaleziono zdjęć w tej kategorii.
         </div>
       )}
-      <Gallery photos={filteredPhotos} />
+      <Gallery photos={filteredPhotos} onDelete={deletePhoto} />
     </main>
 
     <Footer />
