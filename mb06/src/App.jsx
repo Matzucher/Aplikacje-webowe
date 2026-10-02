@@ -26,6 +26,12 @@ export default function App() {
     }])
   }
 
+  function toggleFavourite(id) {
+    setPhotoss(
+      photos.map(p => (p.id === id ? { ...p, favorite: !p.favorite } : p))
+    )
+  }
+
   return <>
     <Navbar />
     <header className="container py-4 py-lg-5">
@@ -72,7 +78,11 @@ export default function App() {
           Nie znaleziono zdjęć w tej kategorii.
         </div>
       )}
-      <Gallery photos={filteredPhotos} onDelete={deletePhoto} />
+      <Gallery
+        photos={filteredPhotos}
+        onDelete={deletePhoto}
+        onToggleFavourite={toggleFavourite}
+      />
     </main>
 
     <Footer />
