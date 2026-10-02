@@ -64,6 +64,9 @@ export default function App() {
 
     <main className="container">
       <CategoryBar activeCategory={activeCategory} onChange={setActiveCategory} />
+      <p className="text-body-secondary">
+        Wyświetlono {filteredPhotos.length} z {photos.length} zdjęć
+      </p>
       {filteredPhotos.length === 0 && (
         <div className="alert alert-warning">
           Nie znaleziono zdjęć w tej kategorii.
