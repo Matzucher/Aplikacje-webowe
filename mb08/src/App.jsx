@@ -5,11 +5,10 @@ import Gallery from './components/Gallery.jsx'
 import Footer from './components/Footer.jsx'
 import AddPhotoModal from './components/AddPhotoModal.jsx'
 import FiltersOffcanvas from './components/FiltersOffcanvas.jsx'
-import photosDB from './data/photosDB.json'
 import './App.css'
 
 export default function App() {
-  const [photos, setPhotoss] = useState(photosDB)
+  const [photos, setPhotoss] = useState([])
   const [activeCategory, setActiveCategory] = useState("all")
 
   const filteredPhotos =
