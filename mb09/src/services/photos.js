@@ -16,7 +16,7 @@ export function deletePhoto(id) {
     photos = photos.filter(z => z.id !== id)
     return photos
 }
-export function toogleFavourite(id) {
+export function toggleFavourite(id) {
     photos = photos.map(z => (z.id === id ? { ...z, favorite: !z.favorite } : z))
     return photos
 }

@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useZdjecia } from '../hooks/useZdjecia.js'
-import { deletePhoto, toggleFavourite } from '../services/zdjecia.js'
+import { deletePhoto, toggleFavourite } from '../services/photos.js'
+import { usePhotos } from '../hooks/usePhotos.js'
 import CategoryBar from '../components/CategoryBar.jsx'
 import Gallery from '../components/Gallery.jsx'
 import PhotoOfTheDay from '../components/PhotoOfTheDay.jsx'
 
-export default function GaleriaPage() {
-    const { photos, setPhotos, isLoading, error } = useZdjecia()
-    const [activeCategory, setActiveCategory] = useState('all')
+export default function GalleryPage() {
+    const { photos, setPhotos, isLoading, error } = usePhotos()
+    const [activeCategory, setActiveCategory] = useState('wszystkie')
     if (isLoading) {
         return (
             <div className="text-center mt-5">
@@ -26,14 +26,12 @@ export default function GaleriaPage() {
     const filteredPhotos = activeCategory === 'wszystkie' ? photos : photos.filter(z => z.category === activeCategory)
     return (
         <>
-            <header className="container py-4 d-flex justify-contentbetween align-items-center">
+            <header className="container py-4 d-flex justify-content-between align-items-center">
                 <h1 className="mb-0">Galeria zdjęć</h1>
-                <Link to="/dodaj" className="btn btn-primary">Dodaj
-                    zdjęcie</Link>
+                <Link to="/dodaj" className="btn btn-primary">Dodaj zdjęcie</Link>
             </header>
             <main className="container">
-                <CategoryBar aktywna={activeCategory}
-                    onChoise={setActiveCategory} />
+                <CategoryBar activeCategory={activeCategory} onChange={setActiveCategory} />
                 <p className="text-body-secondary">
                     Wyświetlono {filteredPhotos.length} z {photos.length} zdjęć
                 </p>

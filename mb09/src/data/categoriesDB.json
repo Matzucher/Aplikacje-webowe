@@ -1,5 +1,9 @@
 [
     {
+        "value": "wszystkie",
+        "label": "Wszystkie"
+    },
+    {
         "value": "gory",
         "label": "Góry"
     },
