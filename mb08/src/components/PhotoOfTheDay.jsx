@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 function randomId() {
     return Math.floor(Math.random() * 300)
 }
-export default function ZdjecieDnia() {
+export default function PhotoOfTheDay() {
     const [id, setId] = useState(randomId)
     const [photo, setPhoto] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
@@ -23,5 +23,28 @@ export default function ZdjecieDnia() {
         }
         downoladPhoto()
     }, [id])
-    return <p>Zdjęcie dnia — tu dopiero będzie widok</p>
+
+    return <>
+        <div className="container mt-5 mb-5">
+            <h2>Zdjęcie dnia</h2>
+            {photo && (
+                <>
+                    <img
+                        src={`https://picsum.photos/id/${id}/400/250`}
+                        className="img-fluid rounded"
+                        alt={photo.author}
+                    />
+                    <p className="text-muted mt-2">Autor: {photo.author}</p>
+                </>
+            )}
+            <button
+                className="btn btn-outline-primary"
+                disabled={isLoading}
+                onClick={() => setId(randomId())}
+            >
+                {isLoading ? 'Losuję...' : 'Losuj nowe zdjęcie'}
+            </button>
+        </div>
+    </>
+
 }

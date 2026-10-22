@@ -5,6 +5,7 @@ import Gallery from './components/Gallery.jsx'
 import Footer from './components/Footer.jsx'
 import AddPhotoModal from './components/AddPhotoModal.jsx'
 import FiltersOffcanvas from './components/FiltersOffcanvas.jsx'
+import PhotoOfTheDay from './components/PhotoOfTheDay.jsx'
 import './App.css'
 
 export default function App() {
@@ -129,5 +130,7 @@ export default function App() {
     <Footer />
     <AddPhotoModal onAdd={addPhoto} />
     <FiltersOffcanvas activeCategory={activeCategory} onChange={setActiveCategory} />
+
+    <PhotoOfTheDay></PhotoOfTheDay>
   </>
 }
