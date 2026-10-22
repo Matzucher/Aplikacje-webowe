@@ -9,22 +9,27 @@ import './App.css'
 
 export default function App() {
   const [photos, setPhotos] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [activeCategory, setActiveCategory] = useState("all")
 
   useEffect(() => {
-  async function downloadPhotos() {
-    try {
-      const response = await fetch('/photosDB.json')
-      if (!response.ok) throw new Error('Błąd serwera: ' + response.status)
-      const data = await response.json()
-      setPhotos(data)
-    } 
-    catch (err) {
-      console.log(err.message)
+    async function downloadPhotos() {
+      try {
+        const response = await fetch('/photosDB.json')
+        if (!response.ok) throw new Error('Błąd serwera: ' + response.status)
+        const data = await response.json()
+        setPhotos(data)
+      }
+      catch (err) {
+        setError(err.message)
+      }
+      finally {
+        setIsLoading(false)
+      }
     }
-  }
-  downloadPhotos()
-}, [])
+    downloadPhotos()
+  }, [])
 
 
   const filteredPhotos =
@@ -45,6 +50,27 @@ export default function App() {
     setPhotos(
       photos.map(p => (p.id === id ? { ...p, favorite: !p.favorite } : p))
     )
+  }
+
+  if (isLoading) {
+    return (
+      <div className="text-center mt-5">
+        <div className="spinner-border text-primary" role="status" />
+        <p className="mt-2 text-muted">Ładowanie galerii...</p>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="alert alert-danger m-4">
+        Nie udało się pobrać danych: {error}
+      </div>
+    )
+  }
+
+  if (photos.length === 0) {
+    return <div className="alert alert-secondary m-4">Katalog jest na razie pusty.</div>
   }
 
   return <>
