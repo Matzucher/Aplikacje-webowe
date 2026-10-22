@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar.jsx'
 import CategoryBar from './components/CategoryBar.jsx'
 import Gallery from './components/Gallery.jsx'
@@ -8,25 +8,41 @@ import FiltersOffcanvas from './components/FiltersOffcanvas.jsx'
 import './App.css'
 
 export default function App() {
-  const [photos, setPhotoss] = useState([])
+  const [photos, setPhotos] = useState([])
   const [activeCategory, setActiveCategory] = useState("all")
+
+  useEffect(() => {
+  async function downloadPhotos() {
+    try {
+      const response = await fetch('/photosDB.json')
+      if (!response.ok) throw new Error('Błąd serwera: ' + response.status)
+      const data = await response.json()
+      setPhotos(data)
+    } 
+    catch (err) {
+      console.log(err.message)
+    }
+  }
+  downloadPhotos()
+}, [])
+
 
   const filteredPhotos =
     activeCategory === "all" ? photos : photos.filter(z => z.category === activeCategory)
 
   function deletePhoto(id) {
-    setPhotoss(photos.filter(p => p.id !== id))
+    setPhotos(photos.filter(p => p.id !== id))
   }
 
   function addPhoto(newPhoto) {
     const newPhotoId = Math.max(...photos.map(p => p.id)) + 1
-    setPhotoss([...photos, {
+    setPhotos([...photos, {
       ...newPhoto, id: newPhotoId, favorite: false
     }])
   }
 
   function toggleFavourite(id) {
-    setPhotoss(
+    setPhotos(
       photos.map(p => (p.id === id ? { ...p, favorite: !p.favorite } : p))
     )
   }
