@@ -15,8 +15,10 @@ export default function PhotoOfTheDay() {
                 if (!response.ok) throw new Error('Błąd serwera: ' + response.status)
                 const data = await response.json()
                 setPhoto(data)
+                setError(null)
             } catch (err) {
                 setError(err.message)
+                setPhoto(null)
             } finally {
                 setIsLoading(false)
             }
@@ -27,6 +29,7 @@ export default function PhotoOfTheDay() {
     return <>
         <div className="container mt-5 mb-5">
             <h2>Zdjęcie dnia</h2>
+            {error && <div className="alert alert-danger">Błąd: {error}</div>}
             {photo && (
                 <>
                     <img
