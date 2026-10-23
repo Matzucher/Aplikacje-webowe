@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom"
+import { usePizzas } from "../../hooks/usePizzas"
 
-export default function Card({ pizza, onDelete }) {
+export default function Card({ pizza, onDelete, onAccessSwitch }) {
+    const { setPizzas } = usePizzas()
+
     return <>
         <div className="card">
             <div className="card-body">
@@ -15,7 +18,7 @@ export default function Card({ pizza, onDelete }) {
                 <div className="d-flex justify-content-between mt-2 border-top">
                     <Link className="btn btn-outline-primary mt-2" to={`/${pizza.nr}`}>Szczgóły</Link>
                     <div>
-                        <button className="btn btn-outline-secondary mt-2">Dostępność</button>
+                        <button className="btn btn-outline-secondary mt-2" onClick={() => onAccessSwitch(pizza.nr)}>Czynny</button>
                         <button className="btn btn-danger mt-2 ms-2" onClick={() => onDelete(pizza.nr)}>Usuń</button>
                     </div>
                 </div>

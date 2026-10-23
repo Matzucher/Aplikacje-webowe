@@ -1,4 +1,5 @@
 let pizzas = null
+let lastNr = 5
 
 export async function downloadPizzas() {
     if (pizzas) return pizzas
@@ -10,5 +11,17 @@ export async function downloadPizzas() {
 
 export function deletePizza(nr) {
     pizzas = pizzas.filter(pizza => pizza.nr != nr)
+    return pizzas
+}
+
+export function newPizzaNr() {
+    lastNr++;
+    return lastNr
+}
+
+export function switchAccessibility(nr) {
+    let pizza = pizzas.find(pizza => pizza.nr == nr)
+    pizza.czynny = !pizza.czynny
+
     return pizzas
 }
