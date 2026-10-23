@@ -12,6 +12,8 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<CatalogPage></CatalogPage>}></Route>
+          <Route path="/dodaj"></Route>
+          <Route path="/:id"></Route>
         </Route>
       </Routes>
     </>

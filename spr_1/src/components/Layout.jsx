@@ -11,7 +11,7 @@ export default function Layout() {
                         <Link className="nav-link" to="/">Katalog</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/">Dodaj</Link>
+                        <Link className="nav-link" to="/dodaj">Dodaj</Link>
                     </li>
                 </ul>
             </div>
