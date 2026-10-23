@@ -1,0 +1,5 @@
+- Pola na liście (karta): `pseudonim`, `kategoria`, `ocena`, `czynny`
+- Pola na stronie elementu: `nr`, `pseudonim`, `kategoria`, `ocena`, `czynny`
+- Filtr po polu `ocena` — zakres od–do (dwa pola liczbowe)
+- Warunkowe formatowanie karty po polu `kategoria`: kategoria === pierwsza z listy → klasa border-primary
+- Dodatkowa funkcja: navbar z wymagania 1 przeniesiony do osobnego komponentu `Layout.jsx`, plus nowa stopka (nowość, nie było jej w podstawowym zadaniu); w `Layout.jsx` jest też `<Outlet />`, trasy zagnieżdżone pod jednym `<Route element={<Layout />}>`

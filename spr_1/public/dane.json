@@ -1,0 +1,37 @@
+[
+    {
+        "nr": 1,
+        "pseudonim": "Margherita",
+        "kategoria": "Klasyczne",
+        "ocena": 66,
+        "czynny": false
+    },
+    {
+        "nr": 2,
+        "pseudonim": "Pepperoni",
+        "kategoria": "Mięsne",
+        "ocena": 83,
+        "czynny": true
+    },
+    {
+        "nr": 3,
+        "pseudonim": "Hawajska",
+        "kategoria": "Wegetariańskie",
+        "ocena": 100,
+        "czynny": true
+    },
+    {
+        "nr": 4,
+        "pseudonim": "Capricciosa",
+        "kategoria": "Klasyczne",
+        "ocena": 17,
+        "czynny": false
+    },
+    {
+        "nr": 5,
+        "pseudonim": "Quattro Formaggi",
+        "kategoria": "Mięsne",
+        "ocena": 34,
+        "czynny": true
+    }
+]
