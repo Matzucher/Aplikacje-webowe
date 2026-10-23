@@ -1,4 +1,5 @@
 import { usePizzas } from "../../hooks/usePizzas"
+import { deletePizza } from "../../service/pizza"
 import Card from "../components/Card"
 
 export default function CatalogPage() {
@@ -25,7 +26,7 @@ export default function CatalogPage() {
             <div className='row g-4'>
                 {pizzas.map((pizza, index) => (
                     <div className="col-12 col-md-6 col-lg-4" key={index}>
-                        <Card pizza={pizza} ></Card>
+                        <Card pizza={pizza} onDelete={id => setPizzas(deletePizza(id))} ></Card>
                     </div>
                 ))}
             </div>
