@@ -12,12 +12,21 @@ describe('Gallery', () => {
     it('renderuje dokładnie tyle kart, ile elementów w danych', () => {
         render(
             <MemoryRouter>
-                <Gallery photos={przykladoweZdjecia} onDelete={() => { }}
-                    onToggleFavourite={() => { }} />
+                <Gallery photos={przykladoweZdjecia} onDelete={() => { }} onToggleFavourite={() => { }} />
             </MemoryRouter>
         )
         expect(screen.getAllByRole('link', {
             name: 'Powiększ'
         })).toHaveLength(3)
+    })
+    it('nie renderuje żadnej karty dla pustej listy', () => {
+        render(
+            <MemoryRouter>
+                <Gallery photos={[]} onDelete={() => { }} onToggleFavourite={() => { }} />
+            </MemoryRouter>
+        )
+        expect(screen.queryAllByRole('link', {
+            name: 'Powiększ'
+        })).toHaveLength(0)
     })
 })
